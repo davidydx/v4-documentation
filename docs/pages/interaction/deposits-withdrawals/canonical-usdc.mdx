@@ -95,8 +95,7 @@ Circle's burn limit on Noble is currently $250,000 per transaction and is declin
 | 13 | Noble deposit rejected |
 | 21 | Memo not allowed |
 | 22 | Noble exit is closed. Use Injective. |
-| 25 | No rate limit is configured for the Injective route. Withdrawals to Injective fail until governance sets one. |
-| `ratelimit` 1002 | Withdrawal rate limit. Each route has its own. |
+| `ratelimit` 1002 | Withdrawal rate limit. Shared by both routes. |
 
 Withdrawal rejections fail the transaction, so they show up in simulation.
 
@@ -112,10 +111,10 @@ Index these instead of the ICS20 events. On the Injective route the ICS20 events
 
 ## Checklists
 
-**Wallets and explorers:** Show the asset as USDC with no Noble label. Deposit from Injective. Withdraw to Injective, or to Noble while it is open. Exclude the module account from holder counts and TVL. Handle codes 2, 3, 4, 5, 13, 21, 22 and 25.
+**Wallets and explorers:** Show the asset as USDC with no Noble label. Deposit from Injective. Withdraw to Injective, or to Noble while it is open. Exclude the module account from holder counts and TVL. Handle codes 2, 3, 4, 5, 13, 21 and 22.
 
 **Routers (for example Skip):** Route deposits through Injective. For the operator's Noble-clearing route, use the CCTP path with an orbiter memo and request it with `allow_swaps: false`. Never put a forward memo on a dYdX withdrawal.
 
 **Indexers:** Index the `canonical_usdc_*` events instead of the ICS20 events. Attribute users from `canonical_usdc_transfer`. Exclude the module account.
 
-**Exchanges and market makers:** Deposit and withdraw through Injective. Noble withdrawals are temporary. Watch the key dates above, and expect separate rate limits per route.
+**Exchanges and market makers:** Deposit and withdraw through Injective. Noble withdrawals are temporary. Watch the key dates above, and expect withdrawals on both routes to share one rate limit.
