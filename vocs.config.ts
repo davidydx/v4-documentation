@@ -76,6 +76,10 @@ export default defineConfig({
                             link: '/interaction/deposits-withdrawals/overview',
                         },
                         {
+                            text: 'Canonical USDC (Integrators)',
+                            link: '/interaction/deposits-withdrawals/canonical-usdc',
+                        },
+                        {
                             text: 'Skip Go Fast',
                             link: '/interaction/deposits-withdrawals/skipgofast',
                         },
